@@ -105,17 +105,26 @@ function buy(id) {
 
 // Exercise 2
 function cleanCart() {
-    cart = [];
-    const cartList = document.getElementById("cart_list");
-    cartList.innerText = "";
-    const totalPrice = document.getElementById("total_price");
-    totalPrice.innerText = 0;
-    console.log("Cart is empty");
-  }
+  cart = [];
+  const cartList = document.getElementById("cart_list");
+  cartList.innerText = "";
+  const totalPrice = document.getElementById("total_price");
+  totalPrice.innerText = 0;
+  console.log("Cart is empty");
+}
 
 // Exercise 3
 function calculateTotal() {
   // Calculate total price of the cart using the "cartList" array
+  total = 0;
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].subtotalWithDiscount) {
+      total += cart[i].subtotalWithDiscount;
+    } else {
+      total += cart[i].price * cart[i].quantity;
+    }
+  }
+  console.log(`Total price: ${total.toFixed(2)}`);
 }
 
 // Exercise 4
