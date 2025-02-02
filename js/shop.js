@@ -2,7 +2,7 @@
 var products = [
   {
     id: 1,
-    name: "cooking oil",
+    name: "Cooking oil",
     price: 10.5,
     type: "grocery",
     offer: {
@@ -129,20 +129,47 @@ function calculateTotal() {
 
 // Exercise 4
 function applyPromotionsCart() {
-    // Apply promotions to each item in the array "cart"
-    cart.forEach((item) => {
-      if (item.offer && item.quantity >= item.offer.number) {
-        item.subtotalWithDiscount = parseFloat(
-          (item.price * item.quantity * (1 - item.offer.percent / 100)).toFixed(2)
-        );
-      }
-    });
-    console.log("Promotions applied", cart);
-  }
+  // Apply promotions to each item in the array "cart"
+  cart.forEach((item) => {
+    if (item.offer && item.quantity >= item.offer.number) {
+      item.subtotalWithDiscount = parseFloat(
+        (item.price * item.quantity * (1 - item.offer.percent / 100)).toFixed(2)
+      );
+    }
+  });
+  console.log("Promotions applied", cart);
+}
 
 // Exercise 5
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
+  const cartList = document.getElementById("cart_list");
+  const totalPrice = document.getElementById("total_price");
+
+  totalPrice.innerText = `${total.toFixed(2)}`;
+
+  cartList.innerHTML = "";
+
+  cart.forEach((item) => {
+    const productRow = document.createElement("tr");
+
+    const productName = document.createElement("td");
+    productName.innerText = item.name;
+    productRow.appendChild(productName);
+
+    const productPrice = document.createElement("td");
+    productPrice.innerText = item.price;
+    productRow.appendChild(productPrice);
+    const productQuantity = document.createElement("td");
+    productQuantity.innerText = item.quantity;
+    productRow.appendChild(productQuantity);
+    const productSubtotal = document.createElement("td");
+    productSubtotal.innerText =
+      item.subtotalWithDiscount || (item.price * item.quantity).toFixed(2);
+    productRow.appendChild(productSubtotal);
+
+    cartList.appendChild(productRow);
+  });
 }
 
 // ** Nivell II **
