@@ -129,8 +129,16 @@ function calculateTotal() {
 
 // Exercise 4
 function applyPromotionsCart() {
-  // Apply promotions to each item in the array "cart"
-}
+    // Apply promotions to each item in the array "cart"
+    cart.forEach((item) => {
+      if (item.offer && item.quantity >= item.offer.number) {
+        item.subtotalWithDiscount = parseFloat(
+          (item.price * item.quantity * (1 - item.offer.percent / 100)).toFixed(2)
+        );
+      }
+    });
+    console.log("Promotions applied", cart);
+  }
 
 // Exercise 5
 function printCart() {
