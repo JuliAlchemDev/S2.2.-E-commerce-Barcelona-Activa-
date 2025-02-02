@@ -104,7 +104,14 @@ function buy(id) {
 }
 
 // Exercise 2
-function cleanCart() {}
+function cleanCart() {
+    cart = [];
+    const cartList = document.getElementById("cart_list");
+    cartList.innerText = "";
+    const totalPrice = document.getElementById("total_price");
+    totalPrice.innerText = 0;
+    console.log("Cart is empty");
+  }
 
 // Exercise 3
 function calculateTotal() {
